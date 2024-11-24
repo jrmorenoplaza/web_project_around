@@ -1,0 +1,67 @@
+.profile{
+    width: 100%;
+    display: flex;
+}
+
+.profile__image{
+    margin: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.profile__info{
+    margin: 0;
+    width: 415px;
+    height: 77px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "name button"
+    "dato ";
+    gap: 16px 18px;
+}
+
+.profile__name{
+    margin: 0;
+    width: 373px;
+    height: 39px;
+    font-family: Inter;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 48px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    grid-area: name;
+}
+
+.profile__dato{
+    margin: 0;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    width: 415px;
+    height: 22px;
+    grid-area: dato;
+}
+
+.profile__button{
+    width: 24px;
+    height: 24px;
+    align-self: flex-end;
+    grid-area: button;
+}
+
+.profile__add{
+    margin: 0;
+    Width: 150px;
+    Height: 50px;
+    align-self: center;
+
+}

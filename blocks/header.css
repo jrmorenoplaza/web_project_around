@@ -1,7 +1,7 @@
 .header{
     display: flex;
     justify-content: center;
-    width: 880px;
+    width: 100%;
     height: 74px;
     margin: 45px 200px 40px;
 }
