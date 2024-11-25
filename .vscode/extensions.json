@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "profimedica.live-preview"
+        "profimedica.live-preview",
+        "ritwickdey.liveserver"
     ]
 }
