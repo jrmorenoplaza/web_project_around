@@ -17,13 +17,18 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img src="./images/Perfil.png" alt="Imagen de perfil" class="profile__image">
-                <div class="profile__info">
-                <h2 class="profile__name">Jacques Cousteau</h2>
-                <p class="profile__dato">Explorador</p>
-                <button class="profile__button"><img src="./images/Lapiz.png" alt="boton de edicion"></button>
-                </div>
-                <button class="profile__add"><img src="./images/añadir.png" alt="boton para añadir imagenes" ></button>
+                    <img src="./images/Perfil.png" alt="Profile imagen" class="profile__image">
+                    <div class="profile__info">
+                        <div class="profile__name">
+                            Jacques Cousteau
+                            <button class="profile__edit" aria-label="Editar nombre">
+                                <img src="./images/Lapiz.png" alt="icono de edicion" class="profile__edit-img">
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="profile__dato">Explorador</div>
+                    </div>
+                    <div class="profile__add">+</div>
             </section>
             <section class="elements"></section>
         </main>
