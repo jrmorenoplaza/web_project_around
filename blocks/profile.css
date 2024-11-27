@@ -1,9 +1,9 @@
 .profile {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    margin: 0;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    padding: 20px;
-    gap: 20px;
+
 }
 
 .profile__image {
@@ -15,11 +15,15 @@
 }
 
 .profile__info {
+    padding: 0 165px 0 30px;
+    width: 415px;
+    height: 77px;
     grid-template-columns: 1fr;
-    gap: 8px;
+    margin: 0;
 }
 
 .profile__header {
+    margin: 0;
     grid-template-columns: 1fr auto;
     gap: 10px;
     align-items: center;
@@ -67,6 +71,7 @@
     font-size: 18px;
     font-weight: 400;
     margin: 0;
+    line-height: 21.78px;
 }
 
 .profile__add {
@@ -75,9 +80,11 @@
     justify-content: center;
     width: 150px;
     height: 50px;
+    margin: 0;
+    padding: 0;
     border: 2px solid #fff;
-    border-radius: 8px;
     font-size: 24px;
+    color: #fff;
     font-weight: bold;
     background: none;
     cursor: pointer;
@@ -87,10 +94,11 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    padding: 0;
     width: 150px;
     height: 50px;
     border: 2px solid #fff;
-    border-radius: 8px;
     font-size: 24px;
     font-weight: bold;
     background: none;
