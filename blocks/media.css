@@ -1,0 +1,47 @@
+@media screen and (max-width: 1024px) {
+    .header {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .elements__card {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .profile {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .profile__image {
+        margin: auto;
+    }
+
+    .popup__hidden {
+        width: 90%; 
+    }
+
+    .popup__content h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 564px) {
+    .popup__content h2 {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .popup__form input,
+    .popup__form textarea,
+    .popup__save {
+        font-size: 0.9rem;
+    }
+
+    .popup__close {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+}

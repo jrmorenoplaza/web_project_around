@@ -1,0 +1,22 @@
+.footer {
+    margin: auto;
+    width: 318px;    
+    display: flex;
+    padding: 67px 762px 60px 200px;
+    justify-content: start;
+    align-items: flex-end;
+}
+
+.footer__copyright {
+    margin: 0;
+    text-align: center;
+    color: #545454;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+}

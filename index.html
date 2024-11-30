@@ -36,48 +36,80 @@
                         <img class="card__img" src="./images/valle-de-yosemite.jpg" alt="Valle de Yosemite">
                         <div class="card__content">
                           <h3>Valle de Yosemite</h3>
-                          <span class="heart">♡</span>
+                          <label class="heart-checkbox">
+                            <input type="checkbox" class="heart-input">
+                            <img src="./images/Vector.png" alt="Heart" class="heart">
+                          </label>
                         </div>
                       </div>
                       <div class="card">
                         <img class="card__img" src="./images/lago-louise.png" alt="Lago Louise">
                         <div class="card__content">
                           <h3>Lago Louise</h3>
-                          <span class="heart">♡</span>
+                          <label class="heart-checkbox">
+                            <input type="checkbox" class="heart-input">
+                            <img src="./images/Vector.png" alt="Heart" class="heart">
+                          </label>
                         </div>
                       </div>
                       <div class="card">
                         <img class="card__img" src="./images/montañas-calvas.png" alt="Montañas Calvas">
                         <div class="card__content">
                           <h3>Montañas Calvas</h3>
-                          <span class="heart">♡</span>
+                          <label class="heart-checkbox">
+                            <input type="checkbox" class="heart-input">
+                            <img src="./images/Vector.png" alt="Heart" class="heart">
+                          </label>
                         </div>
                       </div>
                       <div class="card">
                         <img class="card__img" src="./images/latemar.png" alt="Latemar">
                         <div class="card__content">
                           <h3>Latemar</h3>
-                          <span class="heart">♡</span>
+                          <label class="heart-checkbox">
+                            <input type="checkbox" class="heart-input">
+                            <img src="./images/Vector.png" alt="Heart" class="heart">
+                          </label>
                         </div>
                       </div>
                       <div class="card">
                         <img class="card__img" src="./images/anoise.png" alt="Vanoise National Park">
                         <div class="card__content">
                           <h3>Vanoise National...</h3>
-                          <span class="heart">♡</span>
+                          <label class="heart-checkbox">
+                            <input type="checkbox" class="heart-input">
+                            <img src="./images/Vector.png" alt="Heart" class="heart">
+                          </label>
                         </div>
                       </div>
                       <div class="card">
                         <img class="card__img" src="./images/lago-di-braies.png" alt="Lago di Braies">
                         <div class="card__content">
                           <h3>Lago di Braies</h3>
-                          <span class="heart">♡</span>
+                          <label class="heart-checkbox">
+                            <input type="checkbox" class="heart-input">
+                            <img src="./images/Vector.png" alt="Heart" class="heart">
+                          </label>
                         </div>
                       </div>
                 </div>
             </section>
         </main>
-        <footer class="footer"></footer>
+        <footer class="footer"><p class="footer__copyright">&copy; 2024 Jesús Rodrigo Moreno Plaza</p></footer>
     </div>
+    <div class="popup__hidden hidden">
+      <div class="popup__content">
+          <button class="popup__close" aria-label="Cerrar"><img src="./images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar"></button>
+          <h2>Editar perfil</h2>
+          <form class="popup__form">
+              <input type="text" id="name" placeholder="Nombre" required>
+              <input type="text" id="about" placeholder="Acerca de mí" required></input>
+              
+              <button type="submit" class="popup__save" disabled>Guardar</button>
+          </form>
+      </div>
+  </div>
+  <div class="overlay__hidden hidden"></div>
+  <script src="java.js"></script>
 </body>
 </html>

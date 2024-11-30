@@ -1,0 +1,24 @@
+
+.heart-checkbox {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .heart-checkbox input[type="checkbox"] {
+    display: none;
+  }
+  
+  .heart {
+    width: 21px;
+    height: 19px;
+  }
+  
+
+  .heart-checkbox:hover .heart {
+    content: url('../images/hover.png'); 
+  }
+  
+  .heart-checkbox input[type="checkbox"]:checked + .heart {
+    content: url('../images/Activo.png'); 
+  }
