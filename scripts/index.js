@@ -19,7 +19,7 @@ function handleProfileFormSubmit(evt) {
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
 const popup = document.querySelector('.popup');
-const overlay = document.querySelector('.overlay__hidden');
+const overlay = document.querySelector('.overlay');
 const closePopupButton = document.querySelector('.popup__close');
 
 const closeHidden = () => {
