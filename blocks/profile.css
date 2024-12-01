@@ -13,7 +13,7 @@
 
 .profile__info {
     display: grid;
-    grid-template-columns: 1fr min-content; 
+    grid-template-columns: auto 1fr; 
     grid-template-rows: auto auto; 
     grid-template-areas: 
         "name edit"
