@@ -90,6 +90,10 @@
     border: 1px solid;
   }
   
+  .popup__save:enabled:hover{
+    background-color: #444;
+    transform: scale(1.02);
+  }
   .popup__close {
     background: none;
     border: none;

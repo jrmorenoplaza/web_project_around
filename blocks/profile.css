@@ -12,19 +12,20 @@
 }
 
 .profile__info {
+    display: grid;
+    grid-template-columns: 1fr min-content; 
+    grid-template-rows: auto auto; 
+    grid-template-areas: 
+        "name edit"
+        "about .";
+    row-gap: 5px;
+    align-items: center; 
+    column-gap: 10px;
     padding: 0 165px 0 30px;
+    margin: 0;
     width: 415px;
     height: 77px;
-    grid-template-columns: 1fr;
-    margin: 0;
-}
-
-.profile__header {
-    margin: 0;
-    grid-template-columns: 1fr auto;
-    gap: 10px;
-    align-items: center;
-    position: relative;
+    justify-content: center;
 }
 
 .profile__name {
@@ -32,8 +33,11 @@
     font-size: 42px;
     font-weight: 500;
     margin: 0;
-    gap: 18px;
+    padding: 0;
+    column-gap: 18px;
     white-space: nowrap;
+    grid-area: name;
+    width: auto;
 }
 
 .profile__edit {
@@ -41,6 +45,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    justify-self: start;
     padding: 0;
     margin: 0;
     width: 24px;
@@ -49,6 +54,7 @@
     background-image: url("../images/Lapiz.png");
     background-repeat: no-repeat;
     background-position: center;
+    grid-area: edit;
 }
 
 .profile__edit:hover {
@@ -56,6 +62,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    justify-self: start;
     padding: 0;
     margin: 0;
     width: 24px;
@@ -64,12 +71,15 @@
     background-image: url("../images/Lapiz.png");
     background-repeat: no-repeat;
     background-position: center;
+    grid-area: edit;
 }
+
 .profile__dato {
     font-size: 18px;
     font-weight: 400;
     margin: 0;
     line-height: 21.78px;
+    grid-area: about;
 }
 
 .profile__add {
