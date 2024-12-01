@@ -67,8 +67,9 @@
       
       .popup__hidden {
         position: fixed;
-        top: 35%;
-        left: 35%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         background-color: white;
         width: 430px;
         height: 330px;
@@ -196,8 +197,9 @@
 
       .popup__hidden {
         position: fixed;
-        top: 35%;
-        left: 35%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         background-color: white;
         width: 430px;
         height: 330px;
@@ -332,14 +334,15 @@
 
       .popup__hidden {
         position: fixed;
-        top: 35%;
-        left: 35%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         background-color: white;
         width: 430px;
         height: 330px;
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 2;
+        z-index: 1100;
       }
 
     .footer {
@@ -468,14 +471,80 @@
 
       .popup__hidden {
         position: fixed;
-        top: 35%;
-        left: 35%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         background-color: white;
-        width: 430px;
-        height: 330px;
+        width: 282px;
+        height: 322px;
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 1100;
+      }
+
+      .popup__content h2 {
+        width: 238px;
+        font-weight: 900;
+        font-size: 20px;
+        margin: 0;
+        padding: 25px 22px 76px;
+        font-family: "Inter", sans-serif;
+      }
+
+      .popup__name{
+        width: 238px;
+        margin: 0 22px 30px;
+        border: 0;
+        padding: 0;
+        height: 17px;
+        border-bottom: 1px solid #ccc;
+        font-size: 14px;
+    
+      }
+    
+      .popup__about {
+        width: 238px;
+        padding: 0;
+        margin: 0 22px 46px;
+        border: 0;
+        height: 17px;
+        border-bottom: 1px solid #ccc;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+      }
+      
+      .popup__save:disabled {
+        background-color: #fff;
+        color: #C4C4C4;
+        border: none;
+        margin: 0 22px 25px;
+        width: 238px;
+        height: 50.15px;
+        border: 1px solid;
+        border-color: #C4C4C4;
+    
+      }
+      
+      .popup__save:enabled {
+        background-color: #000;
+        color: #fff;
+        width: 238px;
+        cursor: pointer;
+        margin: 48px 36px 36.51px 36px;
+        width: 358px;
+        height: 50.15px;
+        border: 1px solid;
+      }
+      
+      .popup__close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: -45px;
+        right: 5px;
+        width: 26px;
+        height: 26px;
       }
 
     .footer {
@@ -604,15 +673,81 @@
 
       .popup__hidden {
         position: fixed;
-        top: 35%;
-        left: 35%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         background-color: white;
-        width: 430px;
-        height: 330px;
+        width: 282px;
+        height: 322px;
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 1100;
       }
+
+      .popup__content h2 {
+        width: 238px;
+        font-weight: 900;
+        font-size: 20px;
+        margin: 0;
+        padding: 25px 22px 76px;
+        font-family: "Inter", sans-serif;
+      }
+
+      .popup__name{
+        width: 238px;
+        margin: 0 22px 30px;
+        border: 0;
+        padding: 0;
+        height: 17px;
+        border-bottom: 1px solid #ccc;
+        font-size: 14px;
+      }
+    
+      .popup__about {
+        width: 238px;
+        padding: 0;
+        margin: 0 22px 46px;
+        border: 0;
+        height: 17px;
+        border-bottom: 1px solid #ccc;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+      }
+      
+      .popup__save:disabled {
+        background-color: #fff;
+        color: #C4C4C4;
+        border: none;
+        margin: 0 22px 25px;
+        width: 238px;
+        height: 50.15px;
+        border: 1px solid;
+        border-color: #C4C4C4;
+    
+      }
+      
+      .popup__save:enabled {
+        background-color: #000;
+        color: #fff;
+        width: 238px;
+        cursor: pointer;
+        margin: 48px 36px 36.51px 36px;
+        width: 358px;
+        height: 50.15px;
+        border: 1px solid;
+      }
+      
+      .popup__close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: -45px;
+        right: 5px;
+        width: 26px;
+        height: 26px;
+      }
+
 
     .footer {
         margin: 67px auto 0; 

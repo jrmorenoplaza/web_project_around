@@ -14,8 +14,9 @@
   
   .popup__hidden {
     position: fixed;
-    top: 35%;
-    left: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: white;
     width: 430px;
     height: 330px;
@@ -40,22 +41,30 @@
     border: 0;
   }
   
-  .popup__form input{
+  .popup__name{
     width: 358px;
     margin: 54px 37px 0 35px;
     border: 0;
     height: 27.26px;
     border-bottom: 1px solid #ccc;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+
 
   }
 
-  .popup__form input {
+  .popup__about {
     width: 358px;
     margin: 29.74px 37px 0 35px;
     border: 0;
     height: 27.34px;
     border-bottom: 1px solid #ccc;
     font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
   }
   
   .popup__save:disabled {
@@ -86,8 +95,8 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    top: -35px;
-    right: -35px;
+    top: -40px;
+    right: -40px;
     width: 40px;
     height: 40px;
   }
