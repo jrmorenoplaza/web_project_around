@@ -2,7 +2,6 @@
     display: grid;
     margin: 0;
     grid-template-columns: repeat(3, 1fr);
-
 }
 
 .profile__image {
@@ -10,7 +9,6 @@
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    object-fit: cover;
 }
 
 .profile__info {
@@ -48,11 +46,9 @@
     width: 24px;
     height: 24px;
     border: 1px solid #fff;
-}
-
-.profile__edit-img {
-    width: 12px;
-    height: 12px;
+    background-image: url("../images/Lapiz.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__edit:hover {
@@ -65,6 +61,9 @@
     width: 24px;
     height: 24px;
     border: 1px solid #fff;
+    background-image: url("../images/Lapiz.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .profile__dato {
     font-size: 18px;
@@ -93,10 +92,10 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    padding: 0;
     width: 150px;
     height: 50px;
+    margin: 0;
+    padding: 0;
     border: 2px solid #fff;
     font-size: 24px;
     font-weight: bold;

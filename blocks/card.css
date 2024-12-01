@@ -4,12 +4,11 @@
     white-space: nowrap;
     overflow: hidden;
     color: black;
+    width: 282px;
 }
 
 .card__img {
     width: 100%;
-    height: auto;
-    display: block;
 }
 
 .card__content {

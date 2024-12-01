@@ -1,7 +1,4 @@
 .content{
-    display: grid;
     width: 880px;
-    margin: 0 auto 0 auto;
-    padding: 40px 200px 0;
-    align-items: center;
+    margin: 40px auto 0;
 }

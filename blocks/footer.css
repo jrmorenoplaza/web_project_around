@@ -1,8 +1,8 @@
 .footer {
-    margin: auto;
+    margin: 67px 762px auto auto;
     width: 318px;    
     display: flex;
-    padding: 67px 762px 60px 200px;
+    padding: 0 0 60px 0;
     justify-content: start;
     align-items: flex-end;
 }
