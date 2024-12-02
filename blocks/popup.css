@@ -2,7 +2,7 @@
     display: none;
   }
   
-  .overlay__hidden {
+  .overlay {
     position: fixed;
     top: 0;
     left: 0;
