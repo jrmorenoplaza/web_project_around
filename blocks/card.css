@@ -17,6 +17,12 @@
   height: 19.3px;
 }
 
+.card__delete--hidden {
+  display: none;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .card__delete {
   background-color: transparent;
   background-image: url("../images/Trash.png");

@@ -1,3 +1,17 @@
+function disableDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.card__delete');
+    deleteButtons.forEach((button) => {
+        button.classList.add('card__delete--hidden');
+    });
+}
+
+function enableDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.card__delete');
+    deleteButtons.forEach((button) => {
+        button.classList.remove('card__delete--hidden');
+    });
+}
+
 let formElement = document.querySelector('.popup__form');
 
 function handleProfileFormSubmit(evt) {
@@ -25,6 +39,7 @@ const closePopupButton = document.querySelector('.popup__close');
 const closeHidden = () => {
     popup.classList.add('hidden');
     overlay.classList.add('hidden');
+    enableDeleteButtons();
 };
 
 closePopupButton.addEventListener('click', closeHidden);
@@ -42,6 +57,7 @@ const openPopup = () => {
     document.querySelector('#about').value = profileJobElement.textContent;
 
     toggleSaveButton();
+    disableDeleteButtons();
 };
 
 const toggleSaveButton = () => {
@@ -77,11 +93,13 @@ const openAddForm = () => {
     addPopup.classList.remove('hidden');
     addFormOverlay.classList.remove('hidden');
     toggleAddSaveButton(); 
+    disableDeleteButtons();
 };
 
 const closeAddForm = () => {
     addPopup.classList.add('hidden');
     addFormOverlay.classList.add('hidden');
+    enableDeleteButtons();
 };
 
 const toggleAddSaveButton = () => {
@@ -163,6 +181,11 @@ function createCard(name, link) {
         card.remove();
     });
 
+    const cardImage = card.querySelector('.card__img');
+    cardImage.addEventListener('click', () => {
+        openZoomPopup(link, name);
+    });
+
     return card;
 }
 
@@ -190,3 +213,41 @@ addForm.addEventListener('submit', (e) => {
         closeAddForm();
     }
 });
+
+const zoomPopup = document.querySelector('.zoom-popup');
+const zoomPopupImage = document.querySelector('.zoom-popup__image');
+const zoomPopupClose = document.querySelector('.zoom-popup__close');
+
+function openZoomPopup(imageSrc, imageAlt) {
+    zoomPopupImage.src = imageSrc;
+    zoomPopupImage.alt = imageAlt;
+
+    const zoomPopupTitle = document.querySelector('.zoom-popup__title');
+    zoomPopupTitle.textContent = imageAlt;
+
+    zoomPopup.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+    disableDeleteButtons();
+}
+
+function closeZoomPopup() {
+    zoomPopup.classList.add('hidden');
+    overlay.classList.add('hidden');
+    zoomPopupImage.src = '';
+    zoomPopupImage.alt = '';
+    enableDeleteButtons();
+}
+
+zoomPopupClose.addEventListener('click', closeZoomPopup);
+overlay.addEventListener('click', closeZoomPopup);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !zoomPopup.classList.contains('hidden')) {
+        closeZoomPopup();
+    }
+});
+
+
+
+
+
