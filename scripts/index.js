@@ -42,7 +42,6 @@ const openPopup = () => {
     document.querySelector('#about').value = profileJobElement.textContent;
 
     toggleSaveButton();
-
 };
 
 const toggleSaveButton = () => {
@@ -66,5 +65,128 @@ editButton.addEventListener('click', openPopup);
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !popup.classList.contains('hidden')) {
         closeHidden();
+    }
+});
+
+const addButton = document.querySelector('.profile__add');
+const addPopup = document.querySelector('.add');
+const addCloseButton = document.querySelector('.add__close');
+const addFormOverlay = document.querySelector('.overlay');
+
+const openAddForm = () => {
+    addPopup.classList.remove('hidden');
+    addFormOverlay.classList.remove('hidden');
+    toggleAddSaveButton(); 
+};
+
+const closeAddForm = () => {
+    addPopup.classList.add('hidden');
+    addFormOverlay.classList.add('hidden');
+};
+
+const toggleAddSaveButton = () => {
+    const nameInput = document.querySelector('#place-name');
+    const urlInput = document.querySelector('#place-url');
+    const saveButton = document.querySelector('.add__save');
+
+    if (nameInput.value.trim() !== '' && urlInput.value.trim() !== '') {
+        saveButton.disabled = false;
+    } else {
+        saveButton.disabled = true;
+    }
+};
+
+addButton.addEventListener('click', openAddForm);
+addCloseButton.addEventListener('click', closeAddForm);
+addFormOverlay.addEventListener('click', closeAddForm);
+
+document.querySelector('.add__name').addEventListener('input', toggleAddSaveButton);
+document.querySelector('.add__url').addEventListener('input', toggleAddSaveButton);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !addPopup.classList.contains('hidden')) {
+        closeAddForm();
+    }
+});
+
+toggleAddSaveButton();
+
+const cardContainer = document.querySelector('.elements__card');
+
+const initialCards = [
+    {
+        name: "Valle de Yosemite",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg"
+    },
+    {
+        name: "Lago Louise",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg"
+    },
+    {
+        name: "Montañas Calvas",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg"
+    },
+    {
+        name: "Parque Nacional de la Vanoise",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg"
+    }
+];
+
+function createCard(name, link) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    card.innerHTML = `
+        <div class="card__header">
+            <button class="card__delete" aria-label="Eliminar tarjeta"></button>
+        </div>
+        <img class="card__img" src="${link}" alt="${name}">
+        <div class="card__content">
+            <h3>${name}</h3>
+            <label class="heart-checkbox">
+                <input type="checkbox" class="heart-input">
+                <img src="./images/Vector.png" alt="Heart" class="heart">
+            </label>
+        </div>
+    `;
+
+    const deleteButton = card.querySelector('.card__delete');
+    deleteButton.addEventListener('click', () => {
+        card.remove();
+    });
+
+    return card;
+}
+
+function renderInitialCards(cards) {
+    cards.forEach(cardData => {
+        const newCard = createCard(cardData.name, cardData.link);
+        cardContainer.appendChild(newCard);
+    });
+}
+
+renderInitialCards(initialCards);
+
+const addForm = document.querySelector('.add__form');
+addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.querySelector('#place-name').value.trim();
+    const urlInput = document.querySelector('#place-url').value.trim();
+
+    if (nameInput && urlInput) {
+        const newCard = createCard(nameInput, urlInput);
+        cardContainer.prepend(newCard); 
+        addForm.reset();
+        toggleAddSaveButton();
+        closeAddForm();
     }
 });
