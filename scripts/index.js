@@ -1,3 +1,4 @@
+import Card from './card.js';
 import { enableValidation, resetFormValidation } from './validate.js';
 
 const validationConfig = {
@@ -10,20 +11,6 @@ const validationConfig = {
 };
 
 enableValidation(validationConfig);
-
-function disableDeleteButtons() {
-    const deleteButtons = document.querySelectorAll('.card__delete');
-    deleteButtons.forEach((button) => {
-        button.classList.add('card__delete--hidden');
-    });
-}
-
-function enableDeleteButtons() {
-    const deleteButtons = document.querySelectorAll('.card__delete');
-    deleteButtons.forEach((button) => {
-        button.classList.remove('card__delete--hidden');
-    });
-}
 
 let formElement = document.querySelector('.popup__form');
 
@@ -115,7 +102,6 @@ const openAddForm = () => {
     resetFormValidation(addForm, validationConfig);
 };
 
-
 const closeAddForm = () => {
     addPopup.classList.add('hidden');
     addFormOverlay.classList.add('hidden');
@@ -178,41 +164,16 @@ const initialCards = [
     }
 ];
 
-function createCard(name, link) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-
-    card.innerHTML = `
-        <div class="card__header">
-            <button class="card__delete" aria-label="Eliminar tarjeta"></button>
-        </div>
-        <img class="card__img" src="${link}" alt="${name}">
-        <div class="card__content">
-            <h3>${name}</h3>
-            <label class="heart-checkbox">
-                <input type="checkbox" class="heart-input">
-                <img src="./images/Vector.png" alt="Heart" class="heart">
-            </label>
-        </div>
-    `;
-
-    const deleteButton = card.querySelector('.card__delete');
-    deleteButton.addEventListener('click', () => {
-        card.remove();
-    });
-
-    const cardImage = card.querySelector('.card__img');
-    cardImage.addEventListener('click', () => {
-        openZoomPopup(link, name);
-    });
-
-    return card;
-}
-
 function renderInitialCards(cards) {
     cards.forEach(cardData => {
-        const newCard = createCard(cardData.name, cardData.link);
-        cardContainer.appendChild(newCard);
+        const card = new Card(cardData, '#card-template');
+        const cardElement = card.getCard();
+        const cardImage = cardElement.querySelector('.card__img'); 
+        cardImage.addEventListener('click', () => {
+            openZoomPopup(cardData.link, cardData.name);
+        });
+        
+        cardContainer.appendChild(cardElement);
     });
 }
 
@@ -226,13 +187,28 @@ addForm.addEventListener('submit', (e) => {
     const urlInput = document.querySelector('#place-url').value.trim();
 
     if (nameInput && urlInput) {
-        const newCard = createCard(nameInput, urlInput);
-        cardContainer.prepend(newCard); 
+        const newCard = new Card({ name: nameInput, link: urlInput }, '#card-template');
+        const cardElement = newCard.getCard();
+        cardContainer.prepend(cardElement);
         addForm.reset();
         toggleAddSaveButton();
         closeAddForm();
     }
 });
+
+function disableDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.card__delete');
+    deleteButtons.forEach((button) => {
+        button.classList.add('card__delete--hidden');
+    });
+}
+
+function enableDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.card__delete');
+    deleteButtons.forEach((button) => {
+        button.classList.remove('card__delete--hidden');
+    });
+}
 
 const zoomPopup = document.querySelector('.zoom-popup');
 const zoomPopupImage = document.querySelector('.zoom-popup__image');
@@ -250,6 +226,7 @@ function openZoomPopup(imageSrc, imageAlt) {
     disableDeleteButtons();
 }
 
+
 function closeZoomPopup() {
     zoomPopup.classList.add('hidden');
     overlay.classList.add('hidden');
@@ -257,6 +234,7 @@ function closeZoomPopup() {
     zoomPopupImage.alt = '';
     enableDeleteButtons();
 }
+
 
 zoomPopupClose.addEventListener('click', closeZoomPopup);
 overlay.addEventListener('click', closeZoomPopup);
@@ -266,9 +244,3 @@ document.addEventListener('keydown', (e) => {
         closeZoomPopup();
     }
 });
-
-
-
-
-
-

@@ -28,6 +28,22 @@
           </section>
           <section class="elements">
               <div class="elements__card">
+                <!-- Template de la tarjeta que se usará para crear las tarjetas -->
+                <template id="card-template">
+                    <div class="card">
+                        <div class="card__header">
+                            <button class="card__delete" aria-label="Eliminar tarjeta"></button>
+                        </div>
+                        <img class="card__img" src="" alt="">
+                        <div class="card__content">
+                            <h3></h3>
+                            <label class="heart-checkbox">
+                                <input type="checkbox" class="heart-input">
+                                <img src="./images/Vector.png" alt="Heart" class="heart">
+                            </label>
+                        </div>
+                    </div>
+                </template>
               </div>
           </section>
       </main>
@@ -35,6 +51,8 @@
           <p class="footer__copyright">&copy; 2024 Jesús Rodrigo Moreno Plaza</p>
       </footer>
   </div>
+
+  <!-- Popups para editar perfil y agregar un nuevo lugar -->
   <div class="popup hidden">
     <div class="popup__content">
         <button class="popup__close" aria-label="Cerrar">
@@ -48,11 +66,11 @@
             <input class="popup__about" type="text" id="about" placeholder="Acerca de mi" required minlength="2" maxlength="200" autocomplete="off" />
             <span class="popup__error" id="about-error"></span>
 
-
             <button type="submit" class="popup__save" disabled>Guardar</button>
         </form>
     </div>
-</div>
+  </div>
+
   <div class="add hidden">
       <div class="add__content">
           <button class="add__close" aria-label="Cerrar">
@@ -79,8 +97,10 @@
         <img class="zoom-popup__image" src="" alt="Imagen ampliada">
         <h3 class="zoom-popup__title"></h3>
     </div>
-</div>
-<div class="overlay hidden"></div>
+  </div>
+
+  <div class="overlay hidden"></div>
+
   <script type="module" src="./Scripts/validate.js"></script>
   <script type="module" src="./Scripts/index.js"></script>
 </body>
