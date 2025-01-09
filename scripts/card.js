@@ -9,18 +9,14 @@ export default class Card {
         this._title = this._element.querySelector('h3');
     }
 
-    // Método privado para obtener el template y clonarlo
     _getTemplate() {
         const template = document.querySelector(this._templateSelector).content;
         return template.cloneNode(true).querySelector('.card');
     }
-
-    // Método privado para manejar el evento de eliminar tarjeta
     _handleDeleteClick() {
         this._element.remove();
     }
 
-    // Método privado para manejar el evento de zoom de la imagen
     _handleImageClick() {
         const event = new CustomEvent('zoom', {
             detail: {
@@ -31,13 +27,11 @@ export default class Card {
         this._element.dispatchEvent(event);
     }
 
-    // Método que agrega los eventos a la tarjeta
     _setEventListeners() {
         this._deleteButton.addEventListener('click', () => this._handleDeleteClick());
         this._image.addEventListener('click', () => this._handleImageClick());
     }
-
-    // Método público que devuelve la tarjeta completamente funcional
+    
     getCard() {
         this._title.textContent = this._name;
         this._image.src = this._link;

@@ -126,7 +126,7 @@ addFormElement.addEventListener('submit', (e) => {
     if (nameInput && urlInput) {
         const newCard = new Card({ name: nameInput, link: urlInput }, '#card-template');
         const cardElement = newCard.getCard();
-        const cardImage = cardElement.querySelector('.card__img'); // Asignar evento de zoom
+        const cardImage = cardElement.querySelector('.card__img');
 
         cardImage.addEventListener('click', () => {
             openZoomPopup(urlInput, nameInput, document.querySelector('.zoom-popup'));
