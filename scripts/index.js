@@ -146,14 +146,26 @@ const overlay = document.querySelector('.overlay');
 zoomPopupClose.addEventListener('click', () => closeZoomPopup(zoomPopup));
 
 overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) { 
-        closeZoomPopup(zoomPopup);
+    if (e.target === overlay) {
+        const openPopup = document.querySelector('.popup:not(.hidden)');
+        const openAddPopup = document.querySelector('.add:not(.hidden)');
+        const openZoomPopup = document.querySelector('.zoom-popup:not(.hidden)');
+
+        if (openPopup) closePopup(openPopup);
+        if (openAddPopup) closePopup(openAddPopup);
+        if (openZoomPopup) closeZoomPopup(zoomPopup);
     }
 });
 
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const zoomPopup = document.querySelector('.zoom-popup:not(.hidden)');
-        if (zoomPopup) closeZoomPopup(zoomPopup);
+        const openPopup = document.querySelector('.popup:not(.hidden)');
+        const openAddPopup = document.querySelector('.add:not(.hidden)');
+        const openZoomPopup = document.querySelector('.zoom-popup:not(.hidden)');
+
+        if (openPopup) closePopup(openPopup);
+        if (openAddPopup) closePopup(openAddPopup);
+        if (openZoomPopup) closeZoomPopup(openZoomPopup);
     }
 });
