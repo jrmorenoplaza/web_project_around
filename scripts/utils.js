@@ -14,7 +14,7 @@ export const enableDeleteButtons = () => {
         button.classList.remove('card__delete--hidden');
     });
 };
-n
+
 export const disableDeleteButtons = () => {
     const deleteButtons = document.querySelectorAll('.card__delete');
     deleteButtons.forEach((button) => {
