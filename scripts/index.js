@@ -1,4 +1,4 @@
-import Card from '../scripts/card.js.js';
+import Card from '../scripts/card.js';
 import FormValidator from '../scripts/FormValidator.js';
 import { 
     openPopup, 
@@ -7,7 +7,7 @@ import {
     disableDeleteButtons, 
     openZoomPopup, 
     closeZoomPopup 
-} from '../scripts/utils';
+} from '../scripts/utils.js';
 
 const validationConfig = {
     formSelector: '.popup__form, .add__form',
