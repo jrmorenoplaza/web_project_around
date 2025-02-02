@@ -1,5 +1,5 @@
-import Card from '../scripts/card.js';
-import FormValidator from '../scripts/FormValidator.js';
+import Card from '../Components/card.js';
+import FormValidator from '../Components/FormValidator.js';
 import { 
     openPopup, 
     closePopup, 
@@ -7,7 +7,9 @@ import {
     disableDeleteButtons, 
     openZoomPopup, 
     closeZoomPopup 
-} from '../scripts/utils.js';
+} from '../Components/utils.js';
+
+import Section from '../Components/Section.js';
 
 const validationConfig = {
     formSelector: '.popup__form, .add__form',
@@ -100,23 +102,23 @@ const initialCards = [
     }
 ];
 
-function renderInitialCards(cards) {
-    cards.forEach(cardData => {
+const cardSection = new Section({
+    items: initialCards,
+    renderer: (cardData) => {
         const card = new Card(cardData, '#card-template');
         const cardElement = card.getCard();
-        const cardImage = cardElement.querySelector('.card__img'); 
-        enableDeleteButtons(); 
+        const cardImage = cardElement.querySelector('.card__img');
 
         cardImage.addEventListener('click', () => {
             openZoomPopup(cardData.link, cardData.name, document.querySelector('.zoom-popup'));
         });
-        
-        cardContainer.appendChild(cardElement);
-    });
-}
 
+        cardSection.addItem(cardElement);
+    }
+}, '.elements__card');
 
-renderInitialCards(initialCards);
+cardSection.renderItems();
+
 
 addFormElement.addEventListener('submit', (e) => {
     e.preventDefault();
