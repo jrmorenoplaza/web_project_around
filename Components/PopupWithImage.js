@@ -1,4 +1,4 @@
-import Popup from "./popup.js";
+import Popup from "../Components/popup.js";
 
 export default class PopupWithImage extends Popup {
     open(imageUrl, imageCaption) {
@@ -9,6 +9,6 @@ export default class PopupWithImage extends Popup {
         imageElement.alt = imageCaption;
         captionElement.textContent = imageCaption;
 
-        super.open(); // Llama al método "open" de la clase base
+        super.open();
     }
 }

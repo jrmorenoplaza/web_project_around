@@ -9,8 +9,13 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+    z-index: 10;
   }
+
+  .overlay.opened {
+    display: block; /* Mostrar cuando esté activo */
+    z-index: 10;
+}
   
   .popup {
     position: fixed;
@@ -22,7 +27,7 @@
     height: 330px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    z-index: 20;
   }
   
   .popup__content h2 {
@@ -110,13 +115,40 @@
 }
 
 
-  .popup__close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    width: 40px;
-    height: 40px;
-  }
+.popup__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.popup__close:hover{
+  opacity: 0.6;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.popup__close img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  pointer-events: auto;
+}

@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 20;
 }
 
 .zoom-popup__title {
@@ -47,27 +47,41 @@
 }
 
 .zoom-popup__close {
-    position: absolute;
-    top: -70px;
-    right: -35px;
     background: none;
     border: none;
     cursor: pointer;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     z-index: 1001;
-}
-
-.zoom-popup__close:hover {
+  }
+  
+  .zoom-popup__close:hover{
     opacity: 0.6;
-    position: absolute;
-    top: -70px;
-    right: -35px;
     background: none;
     border: none;
     cursor: pointer;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     z-index: 1001;
-}
-
-.zoom-popup__close img {
-    width: 30px;
-    height: 30px;
-}
+  }
+  
+  .zoom__close img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: auto;
+  }

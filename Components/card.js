@@ -3,7 +3,7 @@ export default class Card {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._handleCardClick = handleCardClick; // Recibir handleCardClick
+        this._handleCardClick = handleCardClick;
         this._element = this._getTemplate();
         this._deleteButton = this._element.querySelector('.card__delete');
         this._image = this._element.querySelector('.card__img');
@@ -20,7 +20,6 @@ export default class Card {
     }
 
     _handleImageClick() {
-        // Llama a handleCardClick con el link y el nombre de la imagen
         this._handleCardClick(this._link, this._name);
     }
 
