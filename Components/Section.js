@@ -6,6 +6,8 @@ export default class Section {
     }
 
     renderItems() {
+        console.log("Ejecutando renderItems"); // Debugging
+        console.log("Lista de elementos a renderizar:", this._items);
         this._items.forEach(item => {
             this._renderer(item);
         });

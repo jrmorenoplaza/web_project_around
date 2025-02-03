@@ -22,25 +22,4 @@ export const disableDeleteButtons = () => {
     });
 };
 
-export const openZoomPopup = (imageSrc, imageAlt, zoomPopup) => {
-    const zoomPopupImage = zoomPopup.querySelector('.zoom-popup__image');
-    const zoomPopupTitle = zoomPopup.querySelector('.zoom-popup__title');
-
-    zoomPopupImage.src = imageSrc;
-    zoomPopupImage.alt = imageAlt;
-    zoomPopupTitle.textContent = imageAlt;
-
-    openPopup(zoomPopup);
-    disableDeleteButtons();
-};
-
-export const closeZoomPopup = (zoomPopup) => {
-    const zoomPopupImage = zoomPopup.querySelector('.zoom-popup__image');
-    
-    zoomPopupImage.src = '';
-    zoomPopupImage.alt = '';
-
-    closePopup(zoomPopup);
-    enableDeleteButtons();
-};
 
