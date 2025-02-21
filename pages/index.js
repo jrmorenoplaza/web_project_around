@@ -52,11 +52,13 @@ function handleCardClick(imageUrl, imageCaption) {
 }
 
 const cardSection = new Section({
+    items: [],
     renderer: (cardData) => {
         const card = new Card(cardData, '#card-template', handleCardClick);
         cardSection.addItem(card.getCard());
     }
 }, '.elements__card');
+
 
 function fetchCards() {
     fetch("https://around-api.es.tripleten-services.com/v1/cards/", {
@@ -73,9 +75,17 @@ function fetchCards() {
         return response.json();
     })
     .then(cards => {
-        console.log("Tarjetas obtenidas de la API:", cards);
-        cardSection.renderItems(cards); // Ahora renderItems() usa el parámetro en lugar de this._items
+        console.log("✅ Tarjetas obtenidas de la API:", cards);
+        if (!Array.isArray(cards)) {
+            console.error("❌ La API no devolvió un array:", cards);
+            return;
+        }
+        console.log(`🔍 Se obtuvieron ${cards.length} tarjetas.`);
+        cardSection._items = cards; // Almacenar tarjetas en la instancia
+        cardSection.renderItems(cards); // Pasar explícitamente el array
     })
+    
+    
     .catch(error => {
         console.error("Error al obtener las tarjetas:", error);
         alert("Hubo un problema al cargar las tarjetas.");

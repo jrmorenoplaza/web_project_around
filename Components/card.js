@@ -11,8 +11,12 @@ export default class Card {
     }
 
     _getTemplate() {
-        const template = document.querySelector(this._templateSelector).content;
-        return template.cloneNode(true).querySelector('.card');
+        const template = document.querySelector(this._templateSelector);
+        if (!template) {
+            console.error("No se encontró el template:", this._templateSelector);
+            return null;
+        }
+        return template.content.cloneNode(true).querySelector('.card');
     }
 
     _handleDeleteClick() {
@@ -29,10 +33,18 @@ export default class Card {
     }
 
     getCard() {
+        console.log(`🃏 Creando tarjeta: ${this._name}, ${this._link}`);
+    
         this._title.textContent = this._name;
         this._image.src = this._link;
-        this._image.alt = this._name;
+        this._image.alt = `Imagen de ${this._name}`;
         this._setEventListeners();
+    
+        if (!this._element) {
+            console.error("Error: No se pudo crear el elemento de la tarjeta.");
+        }
+    
         return this._element;
     }
+    
 }
