@@ -17,7 +17,8 @@ const validationConfig = {
 
 const userInfo = new UserInfo({
     nameSelector: ".profile__name",
-    aboutSelector: ".profile__dato"
+    aboutSelector: ".profile__dato",
+    avatarSelector: ".profile__image"
 });
 
 const profilePopupWithForm = new PopupWithForm(".popup", (formData) => {
@@ -50,24 +51,38 @@ function handleCardClick(imageUrl, imageCaption) {
     zoomPopupInstance.open(imageUrl, imageCaption);
 }
 
-const initialCards = [
-    { name: "Valle de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" },
-    { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg" },
-    { name: "Montañas Calvas", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg" },
-    { name: "Latemar", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg" },
-    { name: "Parque Nacional de la Vanoise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg" },
-    { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" }
-];
-
 const cardSection = new Section({
-    items: initialCards,
     renderer: (cardData) => {
         const card = new Card(cardData, '#card-template', handleCardClick);
         cardSection.addItem(card.getCard());
     }
 }, '.elements__card');
 
-cardSection.renderItems();
+function fetchCards() {
+    fetch("https://around-api.es.tripleten-services.com/v1/cards/", {
+        method: "GET",
+        headers: {
+            Authorization: "6fdd9345-6378-4693-86e9-66ccfae37409",
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(cards => {
+        console.log("Tarjetas obtenidas de la API:", cards);
+        cardSection.renderItems(cards); // Ahora renderItems() usa el parámetro en lugar de this._items
+    })
+    .catch(error => {
+        console.error("Error al obtener las tarjetas:", error);
+        alert("Hubo un problema al cargar las tarjetas.");
+    });
+}
+
+fetchCards();
 
 const editButton = document.querySelector('.profile__edit');
 editButton.addEventListener('click', () => {
@@ -83,4 +98,40 @@ const addButton = document.querySelector('.profile__add');
 addButton.addEventListener('click', () => {
     addCardPopupWithForm.open();
     addFormValidator.resetValidation();
-});
+});  
+
+function fetchUserInfo() {
+    
+    return fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
+        method: "GET",
+        headers: {
+            Authorization: `6fdd9345-6378-4693-86e9-66ccfae37409`,
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        userInfo.setUserInfo({
+            name: data.name,
+            about: data.about,
+            avatar: data.avatar
+        });
+    })
+    .catch(error => {
+        console.error("Error al obtener datos del usuario:", error);
+        alert("Hubo un problema al cargar los datos del usuario.");
+    });
+}
+
+fetchUserInfo();
+
+document.querySelector("#card-template")
+
+document.querySelector(".elements__card")
+
+document.querySelector(".profile__image")
