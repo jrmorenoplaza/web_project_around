@@ -5,6 +5,7 @@ import Popup from '../Components/popup.js';
 import PopupWithImage from '../Components/PopupWithImage.js';
 import PopupWithForm from "../Components/PopupWithForm.js";
 import UserInfo from "../Components/UserInfo.js";
+import Api from "../Components/api.js";
 
 const validationConfig = {
     formSelector: '.popup__form, .add__form',
@@ -15,6 +16,14 @@ const validationConfig = {
     errorClass: 'popup__error_visible'
 };
 
+const api = new Api({
+    baseUrl: "https://around-api.es.tripleten-services.com/v1",
+    headers: {
+        Authorization: "6fdd9345-6378-4693-86e9-66ccfae37409",
+        "Content-Type": "application/json"
+    }
+});
+
 const userInfo = new UserInfo({
     nameSelector: ".profile__name",
     aboutSelector: ".profile__dato",
@@ -22,18 +31,30 @@ const userInfo = new UserInfo({
 });
 
 const profilePopupWithForm = new PopupWithForm(".popup", (formData) => {
-    updateUserProfile(formData["name"], formData["about"])
-        .then(() => profilePopupWithForm.close()); // Cerrar el popup después de actualizar
+    api.updateUserInfo(formData["name"], formData["about"])
+        .then(() => {
+            userInfo.setUserInfo({
+                name: formData["name"],
+                about: formData["about"]
+            });
+            profilePopupWithForm.close();
+        })
+        .catch(error => console.error("Error al actualizar el perfil:", error));
 });
 profilePopupWithForm.setEventListeners();
 
 const addCardPopupWithForm = new PopupWithForm(".add", (formData) => {
-    const newCard = new Card(
-        { name: formData["place-name"], link: formData["place-url"] },
-        "#card-template",
-        handleCardClick 
-    );
-    document.querySelector(".elements__card").prepend(newCard.getCard());
+    api.addCard(formData["place-name"], formData["place-url"])
+        .then(newCardData => {
+            const newCard = new Card(
+                { name: newCardData.name, link: newCardData.link, _id: newCardData._id },
+                "#card-template",
+                handleCardClick
+            );
+            document.querySelector(".elements__card").prepend(newCard.getCard());
+            addCardPopupWithForm.close();
+        })
+        .catch(error => console.error("Error al añadir la tarjeta:", error));
 });
 addCardPopupWithForm.setEventListeners();
 
@@ -48,7 +69,6 @@ addFormValidator.enableValidation();
 const zoomPopupInstance = new PopupWithImage('.zoom-popup');
 zoomPopupInstance.setEventListeners();
 
-
 function handleCardClick(imageUrl, imageCaption) {
     zoomPopupInstance.open(imageUrl, imageCaption);
 }
@@ -61,73 +81,17 @@ const cardSection = new Section({
     }
 }, '.elements__card');
 
-
-function fetchCards() {
-    fetch("https://around-api.es.tripleten-services.com/v1/cards/", {
-        method: "GET",
-        headers: {
-            Authorization: "6fdd9345-6378-4693-86e9-66ccfae37409",
-            "Content-Type": "application/json"
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-        return response.json();
-    })
+api.getCards()
     .then(cards => {
-        console.log("✅ Tarjetas obtenidas de la API:", cards);
-        if (!Array.isArray(cards)) {
-            console.error("❌ La API no devolvió un array:", cards);
-            return;
-        }
-        console.log(`🔍 Se obtuvieron ${cards.length} tarjetas.`);
-        cardSection._items = cards; // Almacenar tarjetas en la instancia
-        cardSection.renderItems(cards); // Pasar explícitamente el array
+        cardSection._items = cards;
+        cardSection.renderItems(cards);
     })
-    
-    
     .catch(error => {
         console.error("Error al obtener las tarjetas:", error);
         alert("Hubo un problema al cargar las tarjetas.");
     });
-}
 
-fetchCards();
-
-const editButton = document.querySelector('.profile__edit');
-editButton.addEventListener('click', () => {
-    const userInfoData = userInfo.getUserInfo();
-    console.log("🟢 Botón de editar clickeado");
-    document.querySelector('#name').value = userInfoData.name;
-    document.querySelector('#about').value = userInfoData.about;
-
-    profilePopupWithForm.open();
-    profileFormValidator.resetValidation();
-});
-
-const addButton = document.querySelector('.profile__add');
-addButton.addEventListener('click', () => {
-    addCardPopupWithForm.open();
-    addFormValidator.resetValidation();
-});  
-
-function fetchUserInfo() {
-    
-    return fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
-        method: "GET",
-        headers: {
-            Authorization: `6fdd9345-6378-4693-86e9-66ccfae37409`,
-            "Content-Type": "application/json"
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-        return response.json();
-    })
+api.getUserInfo()
     .then(data => {
         userInfo.setUserInfo({
             name: data.name,
@@ -139,45 +103,19 @@ function fetchUserInfo() {
         console.error("Error al obtener datos del usuario:", error);
         alert("Hubo un problema al cargar los datos del usuario.");
     });
-}
 
-fetchUserInfo();
+const editButton = document.querySelector('.profile__edit');
+editButton.addEventListener('click', () => {
+    const userInfoData = userInfo.getUserInfo();
+    document.querySelector('#name').value = userInfoData.name;
+    document.querySelector('#about').value = userInfoData.about;
 
-function updateUserProfile(name, about) {
-    return fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
-        method: "PATCH",
-        headers: {
-            Authorization: "6fdd9345-6378-4693-86e9-66ccfae37409",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name: name,
-            about: about
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(updatedUserData => {
-        console.log("✅ Perfil actualizado con éxito:", updatedUserData);
-        userInfo.setUserInfo({
-            name: updatedUserData.name,
-            about: updatedUserData.about,
-            avatar: updatedUserData.avatar
-        });
-    })
-    .catch(error => {
-        console.error("Error al actualizar el perfil:", error);
-        alert("Hubo un problema al actualizar tu perfil.");
-    });
-}
+    profilePopupWithForm.open();
+    profileFormValidator.resetValidation();
+});
 
-
-document.querySelector("#card-template")
-
-document.querySelector(".elements__card")
-
-document.querySelector(".profile__image")
+const addButton = document.querySelector('.profile__add');
+addButton.addEventListener('click', () => {
+    addCardPopupWithForm.open();
+    addFormValidator.resetValidation();
+});
