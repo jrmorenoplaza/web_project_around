@@ -22,7 +22,8 @@ const userInfo = new UserInfo({
 });
 
 const profilePopupWithForm = new PopupWithForm(".popup", (formData) => {
-    userInfo.setUserInfo(formData);
+    updateUserProfile(formData["name"], formData["about"])
+        .then(() => profilePopupWithForm.close()); // Cerrar el popup después de actualizar
 });
 profilePopupWithForm.setEventListeners();
 
@@ -46,6 +47,7 @@ addFormValidator.enableValidation();
 
 const zoomPopupInstance = new PopupWithImage('.zoom-popup');
 zoomPopupInstance.setEventListeners();
+
 
 function handleCardClick(imageUrl, imageCaption) {
     zoomPopupInstance.open(imageUrl, imageCaption);
@@ -97,6 +99,7 @@ fetchCards();
 const editButton = document.querySelector('.profile__edit');
 editButton.addEventListener('click', () => {
     const userInfoData = userInfo.getUserInfo();
+    console.log("🟢 Botón de editar clickeado");
     document.querySelector('#name').value = userInfoData.name;
     document.querySelector('#about').value = userInfoData.about;
 
@@ -139,6 +142,39 @@ function fetchUserInfo() {
 }
 
 fetchUserInfo();
+
+function updateUserProfile(name, about) {
+    return fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
+        method: "PATCH",
+        headers: {
+            Authorization: "6fdd9345-6378-4693-86e9-66ccfae37409",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            about: about
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(updatedUserData => {
+        console.log("✅ Perfil actualizado con éxito:", updatedUserData);
+        userInfo.setUserInfo({
+            name: updatedUserData.name,
+            about: updatedUserData.about,
+            avatar: updatedUserData.avatar
+        });
+    })
+    .catch(error => {
+        console.error("Error al actualizar el perfil:", error);
+        alert("Hubo un problema al actualizar tu perfil.");
+    });
+}
+
 
 document.querySelector("#card-template")
 
