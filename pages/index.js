@@ -4,8 +4,26 @@ import Section from '../Components/Section.js';
 import Popup from '../Components/popup.js';
 import PopupWithImage from '../Components/PopupWithImage.js';
 import PopupWithForm from "../Components/PopupWithForm.js";
+import PopupWithConfirmation from "../Components/PopupWithConfirmation.js";
 import UserInfo from "../Components/UserInfo.js";
 import Api from "../Components/api.js";
+
+const confirmPopup = new PopupWithConfirmation(".popup_type_confirm");
+confirmPopup.setEventListeners();
+
+function handleDeleteClick(cardId, cardElement) {
+    confirmPopup.setSubmitAction(() => {
+        api.deleteCard(cardId)
+            .then(() => {
+                cardElement.remove();
+                confirmPopup.close();
+            })
+            .catch(error => console.error("Error al eliminar la tarjeta:", error));
+    });
+
+    confirmPopup.open();
+}
+
 
 const validationConfig = {
     formSelector: '.popup__form, .add__form',
@@ -76,7 +94,7 @@ function handleCardClick(imageUrl, imageCaption) {
 const cardSection = new Section({
     items: [],
     renderer: (cardData) => {
-        const card = new Card(cardData, '#card-template', handleCardClick);
+        const card = new Card(cardData, '#card-template', handleCardClick, handleDeleteClick);
         cardSection.addItem(card.getCard());
     }
 }, '.elements__card');

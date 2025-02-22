@@ -82,10 +82,23 @@
                 <input class="add__url" type="url" id="place-url" name="place-url" placeholder="URL de la imagen" required maxlength="200" autocomplete="off" />
                 <span class="popup__error" id="place-url-error"></span>
             
-            <button type="submit" class="add__save" disabled>Guardar</button>
+            <button type="submit" class="add__save" disabled>Crear</button>
           </form>
       </div>
   </div>
+
+  <div class="popup popup_type_confirm hidden">
+    <div class="popup__container">
+        <h2 class="popup__title">¿Estás seguro?</h2>
+        <form class="popup__form">
+            <button type="submit" class="popup__save">Sí</button>
+            <button type="button" class="popup__close popup__cancel">
+                <img src="./images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
+            </button>
+        </form>
+    </div>
+</div>
+
 
   <div class="zoom-popup hidden">
     <div class="zoom-popup__content">

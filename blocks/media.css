@@ -104,6 +104,19 @@
         z-index: 1100;
     }
 
+    .popup_type_confirm {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      width: 430px;
+      height: 181px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 20;
+    }
+
     .footer {
       margin: 67px auto 0;
       width: 90%;    
@@ -266,6 +279,19 @@
         z-index: 1100;
       }
 
+      .popup_type_confirm {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        width: 430px;
+        height: 181px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 20;
+      }
+
       .footer {
         margin: 67px auto 0;
         width: 90%;    
@@ -423,6 +449,19 @@
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         z-index: 1100;
+      }
+
+      .popup_type_confirm {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        width: 430px;
+        height: 181px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 20;
       }
 
       .footer {
@@ -735,6 +774,19 @@
         height: 26px;
       }
 
+      .popup_type_confirm {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        width: 430px;
+        height: 181px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 20;
+      }
+
       .footer {
         margin: 67px auto 0;
         width: 90%;    
@@ -1040,6 +1092,19 @@
         right: 5px;
         width: 26px;
         height: 26px;
+      }
+
+      .popup_type_confirm {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        width: 430px;
+        height: 181px;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 20;
       }
 
     .footer {
