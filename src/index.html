@@ -6,7 +6,7 @@
     <meta name="author" content="Jesús Rodrigo Moreno Plaza" />
     <meta name="description" content="Formulario de imagenes" />
     <meta name="keywords" content="JavaScript, Formulario" />
-    <link href="./pages/index.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
     <title>Una vuelta alrededor de E.E.U.U</title>
 </head>
 
@@ -19,8 +19,8 @@
       <main class="content">
           <section class="profile">
             <div class="profile__image-container">
-                <img src="/images/Perfil.png" alt="Avatar" class="profile__image">
-                <img src="/images/Vector1.png" alt="Editar" class="profile__image-edit">
+                <img src="./images/Perfil.png" alt="Avatar" class="profile__image">
+                <img src="./images/Vector1.png" alt="Editar" class="profile__image-edit">
             </div>
               <div class="profile__info">
                   <div class="profile__name">Jacques Cousteau</div>
@@ -41,7 +41,7 @@
                             <h3></h3>
                             <label class="heart-checkbox">
                                 <input type="checkbox" class="heart-input">
-                                <img src="/images/Vector.png" alt="Heart" class="heart">
+                                <img src="./images/Vector.png" alt="Heart" class="heart">
                             </label>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
   <div class="popup hidden">
     <div class="popup__content">
         <button class="popup__close" aria-label="Cerrar">
-            <img src="/images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
+            <img src="./images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
         </button>
         <h2>Editar perfil</h2>
         <form class="popup__form" novalidate>
@@ -75,7 +75,7 @@
   <div class="add hidden">
       <div class="add__content">
           <button class="add__close" aria-label="Cerrar">
-              <img src="/images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
+              <img src="./images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
           </button>
           <h2>Nuevo Lugar</h2>
           <form class="add__form" novalidate>
@@ -96,7 +96,7 @@
         <form class="popup__form">
             <button type="submit" class="popup__save">Sí</button>
             <button type="button" class="popup__close popup__cancel">
-                <img src="/images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
+                <img src="./images/Close Icon.png" class="popup__closeIcon" alt="Icono de cerrar">
             </button>
         </form>
     </div>
@@ -106,7 +106,7 @@
   <div class="zoom-popup hidden">
     <div class="zoom-popup__content">
         <button class="zoom-popup__close" aria-label="Cerrar">
-            <img src="/images/Close Icon.png" alt="Cerrar">
+            <img src="./images/Close Icon.png" alt="Cerrar">
         </button>
         <img class="zoom-popup__image" src="" alt="Imagen ampliada">
         <h3 class="zoom-popup__title"></h3>
@@ -115,7 +115,7 @@
 
   <div class="popup popup_type_edit-avatar hidden">
     <div class="popup__content">
-        <button class="popup__close"><img src="/images/Close Icon.png" alt="Cerrar"></button>
+        <button class="popup__close"><img src="./images/Close Icon.png" alt="Cerrar"></button>
         <h2 class="popup__title">Cambiar Foto de Perfil</h2>
         <form class="popup__form" novalidate>
             <input class="add__url" type="url" id="avatar-url" name="avatar" placeholder="Enlace de la nueva foto" required />
@@ -128,10 +128,10 @@
 
   <div class="overlay hidden"></div>
 
-  <script type="module" src="./Components/FormValidator.js"></script>
-  <script type="module" src="./pages/index.js"></script>
-  <script type="module" src="./Components/card.js"></script>
-  <script type="module" src="./Components/utils.js"></script>
+  <script type="module" src="../Components/FormValidator.js"></script>
+  <script type="module" src="index.js"></script>
+  <script type="module" src="../Components/card.js"></script>
+  <script type="module" src="../Components/utils.js"></script>
 </body>
 
 </html>
