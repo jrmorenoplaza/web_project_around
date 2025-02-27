@@ -44,8 +44,6 @@ export default class Card {
             this._likeButton.querySelector(".heart-input").checked = false;
         }
     }
-    
-    
 
     _setEventListeners() {
         this._likeButton.addEventListener("click", () => this._toggleLike());
