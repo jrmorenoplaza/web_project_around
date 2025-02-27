@@ -1,12 +1,12 @@
-import Card from '../Components/card.js';
-import FormValidator from '../Components/FormValidator.js';
-import Section from '../Components/Section.js';
-import Popup from '../Components/popup.js';
-import PopupWithImage from '../Components/PopupWithImage.js';
-import PopupWithForm from "../Components/PopupWithForm.js";
-import PopupWithConfirmation from "../Components/PopupWithConfirmation.js";
-import UserInfo from "../Components/UserInfo.js";
-import Api from "../Components/api.js";
+import Card from './Components/card.js';
+import FormValidator from './Components/FormValidator.js';
+import Section from './Components/Section.js';
+import Popup from './Components/popup.js';
+import PopupWithImage from './Components/PopupWithImage.js';
+import PopupWithForm from "./Components/PopupWithForm.js";
+import PopupWithConfirmation from "./Components/PopupWithConfirmation.js";
+import UserInfo from "./Components/UserInfo.js";
+import Api from "./Components/api.js";
 
 const confirmPopup = new PopupWithConfirmation(".popup_type_confirm");
 confirmPopup.setEventListeners();

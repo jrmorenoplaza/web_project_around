@@ -1,0 +1,142 @@
+.profile {
+    display: grid;
+    margin: 0;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.profile__image-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile__image {
+    margin: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.profile__image:hover {
+    opacity: 0.6;
+}
+
+.profile__image-edit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.profile__image:hover + .profile__image-edit {
+    opacity: 1;
+}
+
+.profile__info {
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    grid-template-rows: auto auto; 
+    grid-template-areas: 
+        "name edit"
+        "about .";
+    row-gap: 5px;
+    align-items: center; 
+    column-gap: 10px;
+    padding: 0 165px 0 30px;
+    margin: 0;
+    width: 415px;
+    height: 77px;
+    justify-content: center;
+}
+
+.profile__name {
+    font-family: 'Inter', sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    column-gap: 18px;
+    white-space: nowrap;
+    grid-area: name;
+    width: auto;
+}
+
+.profile__edit {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    justify-self: start;
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    background-image: url("../images/Lapiz.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: edit;
+}
+
+.profile__edit:hover {
+    opacity: 60%; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    justify-self: start;
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    background-image: url("../images/Lapiz.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-area: edit;
+}
+
+.profile__dato {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 21.78px;
+    grid-area: about;
+}
+
+.profile__add {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    border: 2px solid #fff;
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    background: none;
+    cursor: pointer;
+}
+
+.profile__add:hover {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    border: 2px solid #fff;
+    font-size: 24px;
+    font-weight: bold;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 60%;
+}
