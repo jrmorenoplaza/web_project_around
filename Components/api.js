@@ -11,16 +11,6 @@ export default class Api {
         return response.json();
     }
 
-    getCards() {
-        return fetch(`${this._baseUrl}/cards/`, {
-            method: "GET",
-            headers: this._headers
-        })
-        .then(this._handleResponse)
-        .catch(error => console.error("Error al obtener tarjetas:", error));
-    }
-    
-
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "GET",
@@ -47,11 +37,45 @@ export default class Api {
         .then(this._handleResponse);
     }
 
+    getCards() {
+        return fetch(`${this._baseUrl}/cards/`, {
+            method: "GET",
+            headers: this._headers
+        })
+        .then(this._handleResponse)
+        .catch(error => console.error("Error al obtener tarjetas:", error));
+    }
+
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: "DELETE",
             headers: this._headers
         })
         .then(this._handleResponse);
+    }
+
+    addLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: "PUT",
+            headers: this._headers
+        })
+        .then(this._handleResponse);
+    }
+    
+    removeLike(cardId) {
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+            method: "DELETE",
+            headers: this._headers
+        })
+        .then(this._handleResponse);
+    }
+
+    updateUserAvatar(avatarUrl) {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({ avatar: avatarUrl })
+        })
+        .then(this._handleResponse); 
     }
 }

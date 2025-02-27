@@ -4,11 +4,37 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.profile__image-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
 .profile__image {
     margin: 0;
     width: 120px;
     height: 120px;
     border-radius: 100%;
+}
+
+.profile__image:hover {
+    opacity: 0.6;
+}
+
+.profile__image-edit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.profile__image:hover + .profile__image-edit {
+    opacity: 1;
 }
 
 .profile__info {

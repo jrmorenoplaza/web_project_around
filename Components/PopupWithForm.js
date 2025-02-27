@@ -19,12 +19,30 @@ export default class PopupWithForm extends Popup {
 
     setEventListeners() {
         super.setEventListeners();
-        this._form.addEventListener("submit", (evt) => {
-            evt.preventDefault();
-            this._handleFormSubmit(this._getInputValues());
-            this.close();
+        this._form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            this._toggleLoading(true);
+
+            this._handleFormSubmit(this._getInputValues())
+                .then(() => this.close())
+                .catch((err) => console.error("Error al enviar el formulario:", err))
+                .finally(() => this._toggleLoading(false));
         });
     }
+    
+    _toggleLoading(isLoading) {
+        const submitButton = this._form.querySelector(".popup__save, .add__save");
+
+        if (isLoading) {
+            this._defaultButtonText = submitButton.textContent;
+            submitButton.textContent = "Guardando...";
+            submitButton.disabled = true;
+        } else {
+            submitButton.textContent = this._defaultButtonText;
+            submitButton.disabled = false;
+        }
+    }
+    
 
     close() {
         super.close();

@@ -24,7 +24,6 @@ function handleDeleteClick(cardId, cardElement) {
     confirmPopup.open();
 }
 
-
 const validationConfig = {
     formSelector: '.popup__form, .add__form',
     inputSelector: 'input',
@@ -49,20 +48,18 @@ const userInfo = new UserInfo({
 });
 
 const profilePopupWithForm = new PopupWithForm(".popup", (formData) => {
-    api.updateUserInfo(formData["name"], formData["about"])
+    return api.updateUserInfo(formData["name"], formData["about"])
         .then(() => {
             userInfo.setUserInfo({
                 name: formData["name"],
                 about: formData["about"]
             });
-            profilePopupWithForm.close();
-        })
-        .catch(error => console.error("Error al actualizar el perfil:", error));
+        });
 });
 profilePopupWithForm.setEventListeners();
 
 const addCardPopupWithForm = new PopupWithForm(".add", (formData) => {
-    api.addCard(formData["place-name"], formData["place-url"])
+    return api.addCard(formData["place-name"], formData["place-url"])
         .then(newCardData => {
             const newCard = new Card(
                 { name: newCardData.name, link: newCardData.link, _id: newCardData._id },
@@ -84,6 +81,10 @@ const addFormElement = document.querySelector('.add__form');
 const addFormValidator = new FormValidator(validationConfig, addFormElement);
 addFormValidator.enableValidation();
 
+const avatarFormElement = document.querySelector('.popup_type_edit-avatar .popup__form');
+const avatarFormValidator = new FormValidator(validationConfig, avatarFormElement); 
+avatarFormValidator.enableValidation();
+
 const zoomPopupInstance = new PopupWithImage('.zoom-popup');
 zoomPopupInstance.setEventListeners();
 
@@ -94,13 +95,26 @@ function handleCardClick(imageUrl, imageCaption) {
 const cardSection = new Section({
     items: [],
     renderer: (cardData) => {
-        const card = new Card(cardData, '#card-template', handleCardClick, handleDeleteClick);
+        console.log("Creando tarjeta con datos:", cardData);
+        const card = new Card(
+            {
+                name: cardData.name,
+                link: cardData.link,
+                _id: cardData._id,
+                isLiked: cardData.isLiked
+            },
+            '#card-template',
+            handleCardClick,
+            handleDeleteClick,
+            api
+        );
         cardSection.addItem(card.getCard());
     }
 }, '.elements__card');
 
 api.getCards()
     .then(cards => {
+        console.log("Tarjetas obtenidas de la API:", cards);
         cardSection._items = cards;
         cardSection.renderItems(cards);
     })
@@ -137,3 +151,20 @@ addButton.addEventListener('click', () => {
     addCardPopupWithForm.open();
     addFormValidator.resetValidation();
 });
+
+const avatarEditButton = document.querySelector(".profile__image");
+const avatarPopup = new PopupWithForm(".popup_type_edit-avatar", (formData) => {
+    const avatarUrl = formData.avatar;
+
+    return api.updateUserAvatar(avatarUrl)
+        .then(() => {
+            userInfo.setAvatar(avatarUrl);
+        })
+        .catch((error) => console.error("Error al actualizar la foto de perfil:", error));
+});
+
+avatarEditButton.addEventListener("click", () => {
+    avatarPopup.open();
+});
+
+avatarPopup.setEventListeners();

@@ -10,7 +10,7 @@ export default class Section {
         console.log("Lista de elementos a renderizar:", items);
         
         if (!Array.isArray(items) || items.length === 0) {
-            console.error("❌ Error: renderItems no recibió un array válido", items);
+            console.error("Error: renderItems no recibió un array válido", items);
             return;
         }
     
@@ -22,7 +22,7 @@ export default class Section {
     
 
     addItem(element) {
-        console.log("📌 Agregando elemento al contenedor:", element);
+        console.log("Agregando elemento al contenedor:", element);
         this._container.prepend(element);
     }
     

@@ -13,7 +13,7 @@
   }
 
   .overlay.opened {
-    display: block; /* Mostrar cuando esté activo */
+    display: block;
     z-index: 10;
 }
   
