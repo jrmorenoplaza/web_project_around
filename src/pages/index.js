@@ -64,7 +64,9 @@ const addCardPopupWithForm = new PopupWithForm(".add", (formData) => {
             const newCard = new Card(
                 { name: newCardData.name, link: newCardData.link, _id: newCardData._id },
                 "#card-template",
-                handleCardClick
+                handleCardClick,
+                handleDeleteClick,
+                api
             );
             document.querySelector(".elements__card").prepend(newCard.getCard());
             addCardPopupWithForm.close();
