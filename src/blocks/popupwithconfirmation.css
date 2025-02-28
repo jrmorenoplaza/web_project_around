@@ -18,6 +18,7 @@
     margin: 0;
     padding: 34px 64px 0 36px;
     font-family: "Inter", sans-serif;
+    color: black;
   }
 
   .popup__form label {
